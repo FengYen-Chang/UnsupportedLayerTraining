@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<mapping>
+	<map>
+		<framework name="Cosh" out_port_id="0"/>
+		<IR id="2" name="Cosh" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="Placeholder" out_port_id="0"/>
+		<IR id="0" name="Placeholder" out_port_id="0"/>
+	</map>
+	<map>
+		<framework name="add" out_port_id="0"/>
+		<IR id="1" name="Conv2D" out_port_id="3"/>
+	</map>
+</mapping>
