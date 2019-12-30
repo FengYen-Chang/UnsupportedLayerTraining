@@ -25,8 +25,7 @@
 
 #pragma OPENCL EXTENSION cl_khr_fp16 : enable
 
-__kernel void Cosh(const __global INPUT0_TYPE* input,
-			__global OUTPUT0_TYPE* output)
+__kernel void Cosh(const __global INPUT0_TYPE* input0, __global OUTPUT0_TYPE* output)
 {
 	// global index definition set in the XML configuration file
 	const uint idx = get_global_id(0);
@@ -40,6 +39,6 @@ __kernel void Cosh(const __global INPUT0_TYPE* input,
 	const uint out_id = batch*OUTPUT0_PITCHES[0] + feature*OUTPUT0_PITCHES[1] +
 			   idy*OUTPUT0_PITCHES[2] + idx*OUTPUT0_PITCHES[3] + OUTPUT0_OFFSET;
 
-	INPUT0_TYPE value = input[in_id];
+	INPUT0_TYPE value = input0[in_id];
         output[out_id] = (exp(value) + exp(-value))/2;
 }
