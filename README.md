@@ -1,7 +1,7 @@
 # UnsupportedLayerTraining
 The training project which includes MO and IE for OpenVINO unsupported layer - `cosh`.
 
-##### Create a tensorflow\* model with unsupported layer `cosh`
+### Create a tensorflow\* model with unsupported layer `cosh` and convert it to IR.
 
 1. Create `cosh.py` to generate the model and save as `cosh.pb`
 
@@ -44,32 +44,32 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
     $ python cosh.py
     ```
 
-###### Convert `cosh.pb` to IR
+3. Convert `cosh.pb` to IR
 
-* Run:
+    * Run:
 
-    ```sh
-    $ python $MO_ROOT/mo.py  \
-        --input_model=$AS_NEW/cosh.pb \
-        --input_shape=[1,32,32,1] \
-        --disable_nhwc_to_nchw \
-        -o $OUTPUT_DIR
-    ```
+        ```sh
+        $ python $MO_ROOT/mo.py  \
+            --input_model=$AS_NEW/cosh.pb \
+            --input_shape=[1,32,32,1] \
+            --disable_nhwc_to_nchw \
+            -o $OUTPUT_DIR
+        ```
 
-* Output:
+    * Output:
 
-    ```sh
-    [ ERROR ]  List of operations that cannot be converted to Inference Engine IR:
-    [ ERROR ]      Cosh (1)
-    [ ERROR ]          Cosh
-    [ ERROR ]  Part of the nodes was not converted to IR. Stopped. 
-    For more information please refer to Model Optimizer FAQ (https://docs.openvinotoolkit.org/
-    latest/_docs_MO_DG_prepare_model_Model_Optimizer_FAQ.html), question #24.
-    ```
+        ```sh
+        [ ERROR ]  List of operations that cannot be converted to Inference Engine IR:
+        [ ERROR ]      Cosh (1)
+        [ ERROR ]          Cosh
+        [ ERROR ]  Part of the nodes was not converted to IR. Stopped. 
+        For more information please refer to Model Optimizer FAQ (https://docs.openvinotoolkit.org/
+        latest/_docs_MO_DG_prepare_model_Model_Optimizer_FAQ.html), question #24.
+        ```
 
-    > Got the errors since the `Cosh` layer was not supported by model optimizer.
+        > Got the errors since the `Cosh` layer was not supported by model optimizer.
 
-###### Add unsupported TF layer into Model Optimizer
+### Add unsupported TF layer into Model Optimizer
 
 * **Use existing operation to construct a new operation** - Add `Cosh` operator into `activation_ops.py`.
 
@@ -318,7 +318,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
                 [ SUCCESS ] BIN file: $OUTPUT_DIR/cosh.bin
                 [ SUCCESS ] Total execution time: 1.32 seconds.
                 ```
-###### Run inference
+### Run inference
 
 * Create `infer.py` for inference
 
