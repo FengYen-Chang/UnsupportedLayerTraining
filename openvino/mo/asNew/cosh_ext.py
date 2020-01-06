@@ -15,7 +15,7 @@
 """
 
 from mo.front.extractor import FrontExtractorOp
-from extensions.ops.cosh_tf import CoshOp
+from extensions.ops.cosh import CoshOp
 
 class CoshFrontExtractor(FrontExtractorOp):
     op = 'Cosh'
