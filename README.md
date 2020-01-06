@@ -403,7 +403,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
                 ```sh
                 $ python infer.py \
                     -m $USING_EXISTING_LAYER/cosh.xml \
-                    -e $SAMPLE_BUILD_DIR/intel64/Release/lib/libcpu_extension.so \
+                    -l $SAMPLE_BUILD_DIR/intel64/Release/lib/libcpu_extension.so \
                     -d CPU
                 ```
 
@@ -412,7 +412,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
                 ```sh
                 $ python infer.py \
                     -m $AS_NEW/cosh.xml \
-                    -e $SAMPLE_BUILD_DIR/intel64/Release/lib/libcpu_extension.so \
+                    -l $SAMPLE_BUILD_DIR/intel64/Release/lib/libcpu_extension.so \
                     -d CPU
                 ```
         
@@ -518,7 +518,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
                 ```sh
                 $ python infer.py \
                     -m $AS_NEW/cosh.xml \
-                    -e $SAMPLE_BUILD_DIR/intel64/Release/lib/libcpu_extension.so \
+                    -l $SAMPLE_BUILD_DIR/intel64/Release/lib/libcpu_extension.so \
                     -d CPU
                 ```
         
