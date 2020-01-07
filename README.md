@@ -527,7 +527,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
                 ```sh
                 $ python infer.py \
                     -m $AS_NEW/cosh.xml \
-                    -e ${GEN_OUTPUT}/user_ie_extensions/cpu/build/intel64/Release/lib/libcpu_extension.so \
+                    -l ${GEN_OUTPUT}/user_ie_extensions/cpu/build/intel64/Release/lib/libcpu_extension.so \
                     -d CPU
                 ```
 
