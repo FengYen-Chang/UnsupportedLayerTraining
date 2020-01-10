@@ -14,22 +14,23 @@
  limitations under the License.
 """
 
-import numpy as np
-
-from mo.front.common.partial_infer.elemental import copy_shape_infer
-from mo.graph.graph import Node, Graph
 from mo.ops.op import Op
+from mo.front.common.partial_infer.elemental import copy_shape_infer
+from mo.graph.graph import Node
 
 
 class CoshOp(Op):
     op = 'Cosh'
-
-    def __init__(self, graph: Graph, attrs: dict):
-        super().__init__(graph, {
-            'type': __class__.op,
-            'op': __class__.op,
-            'infer': copy_shape_infer,
-            'in_ports_count': 1,
-            'out_ports_count': 1,
-        }, attrs)
+    
+    def __init__(self, graph, attrs):
+        mandatory_props = dict(
+            type=__class__.op,
+            op=__class__.op,
+            infer=CoshOp.infer            
+        )
+        super().__init__(graph, mandatory_props, attrs)
+    
+    @staticmethod
+    def infer(node: Node):
+        return copy_shape_infer(node)
 
