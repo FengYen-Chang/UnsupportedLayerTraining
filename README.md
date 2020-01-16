@@ -3,7 +3,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
 
 ### Create a tensorflow\* model with unsupported layer `cosh` and convert it to IR.
 
-1. Create `cosh.py` to generate the model and save as `cosh.pb`
+1. Create `tf_cosh.py` to generate the model and save as `cosh.pb`
 
     ```py
     import tensorflow as tf 
@@ -38,10 +38,10 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
     graph_io.write_graph(frozen, '.', 'cosh.pb', as_text=False)
     ```
 
-2. Run `cosh.py`
+2. Run `tf_cosh.py`
 
     ```sh
-    $ python cosh.py
+    $ python tf_cosh.py
     ```
 
 3. Convert `cosh.pb` to IR
