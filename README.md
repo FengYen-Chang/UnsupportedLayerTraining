@@ -283,22 +283,50 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
                     return copy_shape_infer(node)
             ```
 
-        2. Patch the file `cosh_ext.py` and move to directory `$OPENVINO_ROOT/deployment_tools/model_optimizer/extensions/front/tf`
+        2. Cosh Extractor (Choose one method)
+            1. Move the file `cosh_ext.py` to directory `$OPENVINO_ROOT/deployment_tools/model_optimizer/extensions/front/tf`
+                ```py
+                import numpy as np
 
-            ```py
-            from mo.front.extractor import FrontExtractorOp
-            from extensions.ops.cosh_tf import CoshOp
+                from mo.front.extractor import FrontExtractorOp
+                from mo.ops.op import Op
+                from mo.front.tf.extractors.utils import *
+                from mo.front.common.partial_infer.utils import convert_tf_padding_to_str
 
-            class CoshFrontExtractor(FrontExtractorOp):
-                op = 'Cosh'
-                enabled = True
+                class CoshFrontExtractor(FrontExtractorOp):
+                    op = 'Cosh' 
+                    enabled = True
 
-                @staticmethod
-                def extract(node):
-                    # update the attributes of the node
-                    CoshOp.get_op_class_by_name(__class__.op).update_node_stat(node)
-                    return __class__.enabled
-            ```
+                    @staticmethod
+                    def extract(node):
+                        proto_layer = node.pb
+                        param = proto_layer.attr
+                        # extracting parameters from TensorFlow layer and prepare them for IR
+                        attrs = {
+                            'op': __class__.op
+                        }
+
+                        # update the attributes of the node
+                        Op.get_op_class_by_name(__class__.op).update_node_stat(node, attrs)
+
+                        return __class__.enabled
+                ```
+            2. Patch the file `cosh_ext.py` and move to directory `$OPENVINO_ROOT/deployment_tools/model_optimizer/extensions/front/tf`
+
+                ```py
+                from mo.front.extractor import FrontExtractorOp
+                from extensions.ops.cosh_tf import CoshOp
+
+                class CoshFrontExtractor(FrontExtractorOp):
+                    op = 'Cosh'
+                    enabled = True
+
+                    @staticmethod
+                    def extract(node):
+                        # update the attributes of the node
+                        CoshOp.update_node_stat(node)
+                        return __class__.enabled
+                ```
 
         3. Convert the model again
 
