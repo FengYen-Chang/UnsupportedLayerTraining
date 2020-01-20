@@ -136,7 +136,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
 
 * Construct a new operation 
 
-    - Create a templates for `Cosh` custom layer (Need to run as Administrator)
+    - Create a templates for `Cosh` custom layer
 
         1. Run `extgen.py` with parameter `--mo-tf-ext`, `--mo-op`, `--ie-cpu-ext`, and `--ie-gpu-ext`.
 
