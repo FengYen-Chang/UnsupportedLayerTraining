@@ -50,7 +50,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
 
         ```sh
         $ python $MO_ROOT/mo.py  \
-            --input_model=$AS_NEW/cosh.pb \
+            --input_model=$ROOT_OF_TF_MODEL/cosh.pb \
             --input_shape=[1,32,32,1] \
             --disable_nhwc_to_nchw \
             -o $OUTPUT_DIR
@@ -118,7 +118,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
 
             ```sh
             $ python $MO_ROOT/mo.py \
-                --input_model=$USING_EXISTING_LAYER/cosh.pb \
+                --input_model=$ROOT_OF_TF_MODEL/cosh.pb \
                 --input_shape=[1,32,32,1] \
                 --disable_nhwc_to_nchw \
                 -o $OUTPUT_DIR
@@ -334,7 +334,7 @@ The training project which includes MO and IE for OpenVINO unsupported layer - `
 
                 ```sh
                 $ python $MO_ROOT/mo.py \
-                    --input_model=$USING_EXISTING_LAYER/cosh.pb \
+                    --input_model=$ROOT_OF_TF_MODEL/cosh.pb \
                     --input_shape=[1,32,32,1] \
                     --disable_nhwc_to_nchw \
                     -o $OUTPUT_DIR
